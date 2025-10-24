@@ -71,7 +71,29 @@ def atulizar_nota(id_filme,nova_nota):
         finally:
             cursor.close()
             conexao.close()
-id_filme = int(input("Digite o id do filme que deseja atualizar: "))
-nova_nota = input("Digite a nota que deseja atualizar: ")
+# id_filme = int(input("Digite o id do filme que deseja atualizar: "))
+# nova_nota = input("Digite a nota que deseja atualizar: ")
 
-atulizar_nota(id_filme, nova_nota)
+# atulizar_nota(id_filme, nova_nota)
+
+def deletar_filme(id_filme):
+       conexao, cursor = connector()
+       if conexao:
+           try:
+               cursor.execute(
+                   "DELETE FROM filmes WHERE id = %s",
+                   (id_filme,)
+               )
+               conexao.commit()
+               if cursor.rowcount > 0:
+                   print("O aluno foi removido com sucesso!")
+               else:
+                   print("Nenhum filme foi encontrado com o id fornecido. ")
+           except Exception as erro:
+               print(f"Erro tentar deletar filme: {erro}")
+           finally:
+               cursor.close()
+               conexao.close()
+
+id_filme = int(input("Digite o id do filme que deseja deletar: "))
+deletar_filme(id_filme)
