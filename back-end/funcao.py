@@ -35,4 +35,25 @@ def cadastrar_filme(titulo, genero, ano, nota):
             finally:
                  cursor.close()
                  conexao.commit()
-cadastrar_filme("Minha mãe é uma peça", "Comedia", 2013, 9)
+
+def listar_filmes():
+    conexao, cursor = connector() 
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM filmes ORDER BY id"  
+            )
+            return cursor.fetchall()
+        except Exception as erro:
+            print(f"Erro ao listar os filmes: {erro}")
+            return []
+        finally:
+            cursor.close()
+            conexao.close()
+
+# print(f"Lista de filmes {listar_filmes}")
+
+# filmes = listar_filmes()
+# for filme in filmes:
+#     print(filme)
+       
