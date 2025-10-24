@@ -21,3 +21,18 @@ def criar_tabela():
             conexao.commit()
 
 
+def cadastrar_filme(titulo, genero, ano, nota):
+        conexao, cursor = connector()
+        if conexao:
+            try:
+                 cursor.execute(
+                      "INSERT INTO filmes (titulo, genero, ano, nota) VALUES (%s, %s, %s, %s)",
+                      (titulo, genero, ano, nota)
+                      )
+                 conexao.commit()
+            except Exception as erro:
+                 print(f"ERRO ao cadastrar o filme {erro}")
+            finally:
+                 cursor.close()
+                 conexao.commit()
+cadastrar_filme("Minha mãe é uma peça", "Comedia", 2013, 9)
