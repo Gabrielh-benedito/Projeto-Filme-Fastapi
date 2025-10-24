@@ -57,3 +57,21 @@ def listar_filmes():
 # for filme in filmes:
 #     print(filme)
        
+def atulizar_nota(id_filme,nova_nota):
+    conexao, cursor = connector()
+    if conexao:
+        try:
+            cursor.execute(
+                "UPDATE filmes SET nota = %s WHERE id = %s ",
+                (nova_nota, id_filme)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"ERRO ao atulizar nota: {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
+id_filme = int(input("Digite o id do filme que deseja atualizar: "))
+nova_nota = input("Digite a nota que deseja atualizar: ")
+
+atulizar_nota(id_filme, nova_nota)
