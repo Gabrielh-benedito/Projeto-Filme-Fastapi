@@ -35,6 +35,7 @@ def cadastrar_filme(titulo, genero, ano, nota):
             finally:
                  cursor.close()
                  conexao.commit()
+# cadastrar_filme("Avatar", "Ação", 2009, 10)
 
 def listar_filmes():
     conexao, cursor = connector() 
@@ -86,7 +87,7 @@ def deletar_filme(id_filme):
                )
                conexao.commit()
                if cursor.rowcount > 0:
-                   print("O aluno foi removido com sucesso!")
+                   print("O filme foi removido com sucesso!")
                else:
                    print("Nenhum filme foi encontrado com o id fornecido. ")
            except Exception as erro:
@@ -95,5 +96,5 @@ def deletar_filme(id_filme):
                cursor.close()
                conexao.close()
 
-id_filme = int(input("Digite o id do filme que deseja deletar: "))
-deletar_filme(id_filme)
+# id_filme = int(input("Digite o id do filme que deseja deletar: "))
+# deletar_filme(id_filme)
