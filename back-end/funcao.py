@@ -98,3 +98,18 @@ def deletar_filme(id_filme):
 
 # id_filme = int(input("Digite o id do filme que deseja deletar: "))
 # deletar_filme(id_filme)
+
+def buscar_filme(id_filme):
+       conexao, cursor = connector()
+       if conexao:
+           try:
+               cursor.execute(
+                   "SELECT * FROM filmes WHERE id = %s",
+                   (id_filme,)
+               )
+               return cursor.fetchone()
+           except Exception as erro:
+               print(f"Erro tentar deletar filme: {erro}")
+           finally:
+               cursor.close()
+               conexao.close()

@@ -36,3 +36,26 @@ def listar_filmes():
         )
     #Retornando a lista para o usuario
     return {"filmes": lista}
+
+@app.delete("/filmes/{id_filme}")
+def deleta_filme(id_filme: int):
+    funcao.deletar_filme(id_filme)
+    filmes = funcao.buscar_filme(id_filme)
+    if filmes:
+        funcao.deletar_filme(id_filme)
+        return {"mensagem": "Filme excluido com sucesso!"}
+    else:
+        return{"erro": "Filme excluido com sucesso!"}  
+
+
+@app.patch("/filmes/{id_filme}")
+def atualizar_nota(id_filme: int, nova_nota: float):
+    filme = funcao.buscar_filme(id_filme)
+    if filme:
+        funcao.atualizar_nota(id_filme, nova_nota)
+        return {"mensagem": "Nota do filme atualizada com sucesso!"}
+    else:
+        return {"erro": "Filme não encontrado!"}
+
+
+
