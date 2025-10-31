@@ -24,3 +24,4 @@ def connector():
     except Exception as erro:
         print(f"ERRO de conexão: {erro} ")
         return None, None
+
